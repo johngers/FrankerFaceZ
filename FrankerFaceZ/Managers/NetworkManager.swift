@@ -25,6 +25,7 @@ class NetworkManager {
         
         guard let url = URL(string: endpoint) else {
             print("Invalid username")
+            completed(self.emotes)
             return
         }
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
