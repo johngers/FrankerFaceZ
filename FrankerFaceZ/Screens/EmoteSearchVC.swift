@@ -39,9 +39,6 @@ class EmoteSearchVC: LoadingViewController {
         tableView.dataSource = self
         tableView.register(FavoriteCell.self, forCellReuseIdentifier: FavoriteCell.reuseID)
         
-        
-//        let sortButton          = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(sortChoice))
-//        navigationItem.rightBarButtonItem = sortButton
         let button: UIButton = UIButton(type: .system)
         //set image for button
         button.setTitle("Sort", for: .normal)
@@ -56,24 +53,9 @@ class EmoteSearchVC: LoadingViewController {
         //assign button to navigationbar
         navigationItem.rightBarButtonItem = sortButton
         
-        let dButton: UIButton = UIButton(type: .system)
-        //set image for button
-        dButton.setTitle("Discover", for: .normal)
-        dButton.titleLabel?.font = .preferredFont(forTextStyle: .headline)
-        dButton.tintColor = .systemPurple
-        //add function for button
-        dButton.addTarget(self, action: #selector(discoverEmote), for: .touchUpInside)
-        //set frame
-        dButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        
-        let discoverButton = UIBarButtonItem(customView: dButton)
-        //assign button to navigationbar
-        navigationItem.leftBarButtonItem = discoverButton
-        
+        createDiscover()
         EmoteSearchVC.sortString = "created-desc"
         
-        
-
         showLoadingView()
         NetworkManager.shared.getPage(search: "", pageNumber: pageNumber, completed: { (emotes, pages) in
             self.dismissLoadingView()
@@ -107,21 +89,7 @@ class EmoteSearchVC: LoadingViewController {
             print("PAGEGGGEHEEGEG NUMBERRRRR: \(self.pageNumber) Total pages: \(self.totalPages)")
             self.pageEmotes = emotes!
             self.updateUI()
-            let rButton: UIButton = UIButton(type: .system)
-            //set image for button
-            rButton.setTitle("Reset", for: .normal)
-            rButton.titleLabel?.font = .preferredFont(forTextStyle: .headline)
-            rButton.tintColor = .systemPurple
-            //add function for button
-            rButton.addTarget(self, action: #selector(self.resetTable), for: .touchUpInside)
-            //set frame
-            rButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-            
-            let resetButton = UIBarButtonItem(customView: rButton)
-            //assign button to navigationbar
-            DispatchQueue.main.async {
-                self.navigationItem.leftBarButtonItem = resetButton
-            }
+            self.createReset()
         })
     }
     
@@ -136,26 +104,11 @@ class EmoteSearchVC: LoadingViewController {
             print("PAGEGGGEHEEGEG NUMBERRRRR: \(self.pageNumber) Total pages: \(self.totalPages)")
             self.pageEmotes = emotes!
             self.updateUI()
-            let dButton: UIButton = UIButton(type: .system)
-            //set image for button
-            dButton.setTitle("Discover", for: .normal)
-            dButton.titleLabel?.font = .preferredFont(forTextStyle: .headline)
-            dButton.tintColor = .systemPurple
-            //add function for button
-            dButton.addTarget(self, action: #selector(self.discoverEmote), for: .touchUpInside)
-            //set frame
-            dButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-            
-            let discoverButton = UIBarButtonItem(customView: dButton)
-            //assign button to navigationbar
-            DispatchQueue.main.async {
-                self.navigationItem.leftBarButtonItem = discoverButton
-            }
+           
+            self.createDiscover()
         })
         
     }
-    
-    
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -182,7 +135,39 @@ class EmoteSearchVC: LoadingViewController {
         navigationItem.searchController         = searchController
     }
     
+    func createDiscover() {
+        let dButton: UIButton = UIButton(type: .system)
+        //set image for button
+        dButton.setTitle("Discover", for: .normal)
+        dButton.titleLabel?.font = .preferredFont(forTextStyle: .headline)
+        dButton.tintColor = .systemPurple
+        //add function for button
+        dButton.addTarget(self, action: #selector(discoverEmote), for: .touchUpInside)
+        //set frame
+        dButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        
+        let discoverButton = UIBarButtonItem(customView: dButton)
+        //assign button to navigationbar
+        navigationItem.leftBarButtonItem = discoverButton
+    }
     
+    func createReset() {
+        let rButton: UIButton = UIButton(type: .system)
+        //set image for button
+        rButton.setTitle("Reset", for: .normal)
+        rButton.titleLabel?.font = .preferredFont(forTextStyle: .headline)
+        rButton.tintColor = .systemPurple
+        //add function for button
+        rButton.addTarget(self, action: #selector(self.resetTable), for: .touchUpInside)
+        //set frame
+        rButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        
+        let resetButton = UIBarButtonItem(customView: rButton)
+        //assign button to navigationbar
+        DispatchQueue.main.async {
+            self.navigationItem.leftBarButtonItem = resetButton
+        }
+    }
 }
 
 extension EmoteSearchVC: UITableViewDelegate, UITableViewDataSource {
@@ -230,15 +215,6 @@ extension EmoteSearchVC: UITableViewDelegate, UITableViewDataSource {
         let infoVC = EmoteInfoVC(emote: emote, url: currentCell.emoteURL, image: currentCell.avatarImageView.image!)
         let navController = UINavigationController(rootViewController: infoVC)
         present(navController, animated: true)
-        //addButtonTapped(emote: emote)
-        
-        //          guard let url = URL(string: currentCell.emoteURL) else {
-        //                     return
-        //                 }
-        //                 let safariVC = SFSafariViewController(url: url)
-        //                 safariVC.preferredControlTintColor = .systemPurple
-        //                 // let ac = UIActivityViewController(activityItems: [streamerEmotes[sender.tag].urls["2"]!], applicationActivities: nil)
-        //                 present(safariVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -265,9 +241,6 @@ extension EmoteSearchVC: UITableViewDelegate, UITableViewDataSource {
            })
        
        }
-    
-    
-    
 }
 
 extension EmoteSearchVC: UISearchBarDelegate {
@@ -285,19 +258,7 @@ extension EmoteSearchVC: UISearchBarDelegate {
             self.dismissLoadingView()
             self.pageEmotes.append(contentsOf: emotes!)
             self.totalPages = pages
-            let dButton: UIButton = UIButton(type: .system)
-            //set image for button
-            dButton.setTitle("Discover", for: .normal)
-            dButton.titleLabel?.font = .preferredFont(forTextStyle: .headline)
-            dButton.tintColor = .systemPurple
-            //add function for button
-            dButton.addTarget(self, action: #selector(self.discoverEmote), for: .touchUpInside)
-            //set frame
-            dButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-            
-            let discoverButton = UIBarButtonItem(customView: dButton)
-            //assign button to navigationbar
-            self.navigationItem.leftBarButtonItem = discoverButton
+            self.createDiscover()
             self.updateUI()
         }
     }
@@ -331,26 +292,9 @@ extension EmoteSearchVC: UISearchBarDelegate {
             self.dismissLoadingView()
             self.pageEmotes.append(contentsOf: emotes!)
             self.totalPages = pages
-            let rButton: UIButton = UIButton(type: .system)
-            //set image for button
-            rButton.setTitle("Reset", for: .normal)
-            rButton.titleLabel?.font = .preferredFont(forTextStyle: .headline)
-            rButton.tintColor = .systemPurple
-            //add function for button
-            rButton.addTarget(self, action: #selector(self.resetTable), for: .touchUpInside)
-            //set frame
-            rButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-            
-            let resetButton = UIBarButtonItem(customView: rButton)
-            //assign button to navigationbar
-            DispatchQueue.main.async {
-                self.navigationItem.leftBarButtonItem = resetButton
-            }
+            self.createReset()
             self.updateUI()
         })
     }
-    
-    
-    
 }
 
