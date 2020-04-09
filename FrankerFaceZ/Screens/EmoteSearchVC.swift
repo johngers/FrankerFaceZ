@@ -128,6 +128,7 @@ class EmoteSearchVC: LoadingViewController {
     @objc func resetTable() {
         pageNumber = 1
         EmoteSearchVC.sortString = ""
+        navigationItem.title = "Emotes"
         showLoadingView()
         NetworkManager.shared.getPage(search: "", pageNumber: pageNumber, completed: { (emotes, pages) in
             self.dismissLoadingView()
@@ -284,6 +285,19 @@ extension EmoteSearchVC: UISearchBarDelegate {
             self.dismissLoadingView()
             self.pageEmotes.append(contentsOf: emotes!)
             self.totalPages = pages
+            let dButton: UIButton = UIButton(type: .system)
+            //set image for button
+            dButton.setTitle("Discover", for: .normal)
+            dButton.titleLabel?.font = .preferredFont(forTextStyle: .headline)
+            dButton.tintColor = .systemPurple
+            //add function for button
+            dButton.addTarget(self, action: #selector(self.discoverEmote), for: .touchUpInside)
+            //set frame
+            dButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+            
+            let discoverButton = UIBarButtonItem(customView: dButton)
+            //assign button to navigationbar
+            self.navigationItem.leftBarButtonItem = discoverButton
             self.updateUI()
         }
     }
@@ -317,6 +331,21 @@ extension EmoteSearchVC: UISearchBarDelegate {
             self.dismissLoadingView()
             self.pageEmotes.append(contentsOf: emotes!)
             self.totalPages = pages
+            let rButton: UIButton = UIButton(type: .system)
+            //set image for button
+            rButton.setTitle("Reset", for: .normal)
+            rButton.titleLabel?.font = .preferredFont(forTextStyle: .headline)
+            rButton.tintColor = .systemPurple
+            //add function for button
+            rButton.addTarget(self, action: #selector(self.resetTable), for: .touchUpInside)
+            //set frame
+            rButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+            
+            let resetButton = UIBarButtonItem(customView: rButton)
+            //assign button to navigationbar
+            DispatchQueue.main.async {
+                self.navigationItem.leftBarButtonItem = resetButton
+            }
             self.updateUI()
         })
     }
