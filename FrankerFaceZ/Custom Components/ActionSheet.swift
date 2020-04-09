@@ -47,10 +47,6 @@ extension EmoteSearchVC {
         optionMenu.view.tintColor = .systemPurple
        // optionMenu.view.addSubview(view)
         
-        if searchString != "" {
-            self.buttonChecked = .tenth
-        }
-        
         let createdAscending = UIAlertAction(title: "Created At, Ascending", style: .default, handler: { action in
             EmoteSearchVC.sortString = "created-asc"
             self.buttonChecked = .first

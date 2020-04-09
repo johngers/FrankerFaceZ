@@ -73,6 +73,7 @@ class EmoteSearchVC: LoadingViewController {
     }
     
     @objc func sortChoice() {
+        print("Search string: \(searchString)")
         let optionMenu = createActionSheet(searchString: searchString)
         
         self.present(optionMenu, animated: true, completion: nil)
@@ -98,6 +99,7 @@ class EmoteSearchVC: LoadingViewController {
         EmoteSearchVC.sortString = ""
         navigationItem.title = "Emotes"
         searchString = ""
+        buttonChecked = .second
         showLoadingView()
         NetworkManager.shared.getPage(search: searchString, pageNumber: pageNumber, completed: { (emotes, pages) in
             self.dismissLoadingView()
@@ -287,6 +289,7 @@ extension EmoteSearchVC: UISearchBarDelegate {
         searchString = searchController.searchBar.text!
         searchController.isActive = false
         EmoteSearchVC.sortString = "count-desc"
+        buttonChecked = .tenth
         DispatchQueue.main.async {
             self.navigationItem.title = self.searchString
         }
