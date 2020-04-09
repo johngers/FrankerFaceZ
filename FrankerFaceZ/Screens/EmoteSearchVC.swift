@@ -31,7 +31,7 @@ class EmoteSearchVC: LoadingViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
-        self.title = "Emotes"
+        self.navigationItem.title = "Emotes"
         // Do any additional setup after loading the view.
         configureScrollView()
         configureSearchController()
@@ -273,7 +273,7 @@ extension EmoteSearchVC: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         DispatchQueue.main.async {
-            self.title = "Emotes"
+            self.navigationItem.title = "Emotes"
         }
         searchString = ""
         pageNumber = 1
@@ -310,7 +310,7 @@ extension EmoteSearchVC: UISearchBarDelegate {
         searchController.isActive = false
         EmoteSearchVC.sortString = "count-desc"
         DispatchQueue.main.async {
-            self.title = self.searchString
+            self.navigationItem.title = self.searchString
         }
         showLoadingView()
         NetworkManager.shared.getPage(search: searchString, pageNumber: pageNumber, completed: { (emotes, pages) in
