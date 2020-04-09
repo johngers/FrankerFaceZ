@@ -96,7 +96,7 @@ class NetworkManager {
     
     func getPage(search:String, pageNumber:Int, completed: @escaping([Emoticon]?, Int) -> Void) {
         let endpoint = pageURL + search + "&page=\(pageNumber)" + "&sort=\(EmoteSearchVC.sortString)"
-        
+        print(endpoint)
         guard let url = URL(string: endpoint) else {
             print("Invalid username")
             return

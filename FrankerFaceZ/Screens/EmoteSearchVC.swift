@@ -97,8 +97,9 @@ class EmoteSearchVC: LoadingViewController {
         pageNumber = 1
         EmoteSearchVC.sortString = ""
         navigationItem.title = "Emotes"
+        searchString = ""
         showLoadingView()
-        NetworkManager.shared.getPage(search: "", pageNumber: pageNumber, completed: { (emotes, pages) in
+        NetworkManager.shared.getPage(search: searchString, pageNumber: pageNumber, completed: { (emotes, pages) in
             self.dismissLoadingView()
             self.totalPages = pages
             print("PAGEGGGEHEEGEG NUMBERRRRR: \(self.pageNumber) Total pages: \(self.totalPages)")
