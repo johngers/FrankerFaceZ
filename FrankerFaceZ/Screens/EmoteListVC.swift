@@ -44,6 +44,12 @@ class EmoteListVC: LoadingViewController {
             self.dismissLoadingView()
             guard emotes!.count != 0 else {
                 self.presentGFAlertOnMainThread(title: "Streamer not found", message: "Check that you entered the full channel name and that this streamer has FFZ emotes enabled", buttonTitle: "Ok")
+                DispatchQueue.main.async {
+                    for view in self.view.subviews {
+                        view.removeFromSuperview()
+                    }
+                    self.showEmptyStateView(with: "\nNo channel found", in: self.view)
+                }
                 return
             }
             self.streamerEmotes = emotes!
