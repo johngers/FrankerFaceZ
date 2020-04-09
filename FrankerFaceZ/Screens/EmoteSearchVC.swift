@@ -148,7 +148,9 @@ class EmoteSearchVC: LoadingViewController {
         
         let discoverButton = UIBarButtonItem(customView: dButton)
         //assign button to navigationbar
-        navigationItem.leftBarButtonItem = discoverButton
+        DispatchQueue.main.async {
+            self.navigationItem.leftBarButtonItem = discoverButton
+        }
     }
     
     func createReset() {
