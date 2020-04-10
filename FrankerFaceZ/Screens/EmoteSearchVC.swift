@@ -300,6 +300,7 @@ extension EmoteSearchVC: UISearchBarDelegate {
             self.dismissLoadingView()
             self.pageEmotes.append(contentsOf: emotes!)
             self.totalPages = pages
+            self.isSearching = false
             self.createReset()
             self.updateUI()
         })

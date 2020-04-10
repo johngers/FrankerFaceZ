@@ -52,7 +52,7 @@ class LoadingViewController:UIViewController {
               activityIndicator.centerXAnchor.constraint(equalTo: containerView.centerXAnchor)
           ])
           
-          activityIndicator.startAnimating()
+        activityIndicator.startAnimating()
       }
       
       func dismissLoadingView() {

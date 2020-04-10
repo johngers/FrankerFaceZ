@@ -11,10 +11,15 @@ import UIKit
 extension EmoteSearchVC {
     
     func updatePage() {
+        //tableView.prefetchDataSource
         pageNumber = 1
         showLoadingView()
         NetworkManager.shared.getPage(search: self.searchString, pageNumber: pageNumber) { (emotes, pages) in
             self.dismissLoadingView()
+            guard emotes!.count != 0 else {
+                self.presentGFAlertOnMainThread(title: "Error loading emotes", message: "Something went wrong. Please try again.", buttonTitle: "Ok")
+                return
+            }
             self.pageEmotes = emotes!
             self.totalPages = pages
             DispatchQueue.main.async {
