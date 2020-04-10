@@ -74,6 +74,7 @@ class EmoteListVC: LoadingViewController {
     }
     
     func updateUI() {
+        filterEmotes(pageEmotes: &streamerEmotes)
         DispatchQueue.main.async {
             self.title = NetworkManager.displayName
             self.tableView.reloadData()

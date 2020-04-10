@@ -67,6 +67,7 @@ class EmoteSearchVC: LoadingViewController {
     }
     
     func updateUI() {
+        filterEmotes(pageEmotes: &pageEmotes)
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
