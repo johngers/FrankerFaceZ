@@ -183,12 +183,14 @@ extension EmoteSearchVC: UITableViewDelegate, UITableViewDataSource {
         let height = scrollView.frame.size.height
         
         if offsetY > contentHeight - height {
-            guard totalPages > pageNumber else {return}
+            guard totalPages > pageNumber, isSearching == false else {return}
             pageNumber = pageNumber + 1
             //getPage(endpoint: "https://api.frankerfacez.com/v1/emoticons?page=\(pageNumber)")
+            isSearching = true
             showLoadingView()
             NetworkManager.shared.getPage(search: searchString, pageNumber: pageNumber, completed: { (emotes, pages) in
                 self.dismissLoadingView()
+                self.isSearching = false
                 print("PAGEGGGEHEEGEG NUMBERRRRR: \(self.pageNumber)")
                 self.pageEmotes.append(contentsOf: emotes!)
                 self.totalPages = pages

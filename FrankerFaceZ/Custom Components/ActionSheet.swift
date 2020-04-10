@@ -11,8 +11,9 @@ import UIKit
 extension EmoteSearchVC {
     
     func updatePage() {
+        pageNumber = 1
         showLoadingView()
-        NetworkManager.shared.getPage(search: self.searchString, pageNumber: 1) { (emotes, pages) in
+        NetworkManager.shared.getPage(search: self.searchString, pageNumber: pageNumber) { (emotes, pages) in
             self.dismissLoadingView()
             self.pageEmotes = emotes!
             self.totalPages = pages
