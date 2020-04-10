@@ -11,6 +11,7 @@ import UIKit
 class FavoriteCell: UITableViewCell {
     
     static let reuseID  = "FavoriteCell"
+    let cache = NSCache<NSString,UIImage>()
     
     let avatarImageView = GFAvatarImageView(frame: .zero)
     let usernameLabel   = GFTitleLabel(textAlignment: .left, fontsize: 20)
@@ -81,13 +82,19 @@ class FavoriteCell: UITableViewCell {
 //       }
     
     func downloadImage(from urlString: String, completed: @escaping(UIImage?) -> Void) {
+        let cacheKey = NSString(string: urlString)
+        
+        if let image = cache.object(forKey: cacheKey) {
+            completed(image)
+            return
+        }
         
         guard let url = URL(string: "\(urlString)") else {
             completed(nil)
             return
         }
         let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
-            guard let _ = self,
+            guard let self = self,
                 error == nil,
                 let response = response as? HTTPURLResponse, response.statusCode == 200,
                 let data = data,
@@ -95,6 +102,7 @@ class FavoriteCell: UITableViewCell {
                     completed(nil)
                     return
             }
+            self.cache.setObject(image, forKey: cacheKey)
             completed(image)
         }
         task.resume()
