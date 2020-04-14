@@ -107,7 +107,9 @@ extension EmoteListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.reuseID) as! FavoriteCell
+        //let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.reuseID) as! FavoriteCell
+        let cell = FavoriteCell(style: .default, reuseIdentifier: FavoriteCell.reuseID)
+        
         cell.selectionStyle = .none
         let emote = streamerEmotes[indexPath.row]
         cell.set(emote: emote)

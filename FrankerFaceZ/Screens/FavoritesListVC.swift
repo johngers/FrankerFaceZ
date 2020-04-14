@@ -144,7 +144,9 @@ extension FavoritesListVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.reuseID) as! FavoriteCell
+        //let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.reuseID) as! FavoriteCell
+        let cell = FavoriteCell(style: .default, reuseIdentifier: FavoriteCell.reuseID)
+        
         cell.selectionStyle = .none
         let favorite = favorites[indexPath.row]
         cell.set(emote: favorite)
