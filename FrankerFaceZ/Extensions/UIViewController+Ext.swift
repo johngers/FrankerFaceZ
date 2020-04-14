@@ -336,7 +336,7 @@ extension UIViewController {
                     emoticon == emote
                 }
             }
-            else if emote.name.lowercased().contains("froglaugh") {
+            else if emote.name.lowercased().contains("frog") {
                 pageEmotes.removeAll { (emoticon) -> Bool in
                     emoticon == emote
                 }
@@ -392,6 +392,101 @@ extension UIViewController {
                 }
             }
             else if emote.name.lowercased().contains("smilers") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("oohnoo") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("ahum") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("onono") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("comeon") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("toad") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("yup") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("woaw") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("minecwaft") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("modsga") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("plakat") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("crack") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("nop") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("simp") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("wadw") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("soulw") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("littlepog") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("illjx") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("rio") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("starechampw") {
                 pageEmotes.removeAll { (emoticon) -> Bool in
                     emoticon == emote
                 }
