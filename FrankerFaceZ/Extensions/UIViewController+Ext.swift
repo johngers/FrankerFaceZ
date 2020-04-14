@@ -491,6 +491,56 @@ extension UIViewController {
                     emoticon == emote
                 }
             }
+            else if emote.name.lowercased().contains("pecorn") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("hansup") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("kkonaw") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("blessrng") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("smugnug") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("yessir") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("poo") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("didsomeone") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("corn") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("pussy") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
             
         }
     }
