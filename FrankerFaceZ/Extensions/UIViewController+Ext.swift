@@ -541,6 +541,21 @@ extension UIViewController {
                     emoticon == emote
                 }
             }
+            else if emote.name.lowercased().contains("nymn") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("blekitny") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
+            else if emote.name.lowercased().contains("hmm") {
+                pageEmotes.removeAll { (emoticon) -> Bool in
+                    emoticon == emote
+                }
+            }
             
         }
     }
