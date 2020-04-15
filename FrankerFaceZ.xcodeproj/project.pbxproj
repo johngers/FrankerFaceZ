@@ -16,6 +16,7 @@
 		EE286CC02439D87400F15799 /* ActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE286CBF2439D87400F15799 /* ActionSheet.swift */; };
 		EE286CC22439D9A900F15799 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE286CC12439D9A900F15799 /* NetworkManager.swift */; };
 		EE286CC52439DA3C00F15799 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE286CC42439DA3C00F15799 /* Constants.swift */; };
+		EE4D13AC2446E59A0095F3D9 /* MKiCloudSync.m in Sources */ = {isa = PBXBuildFile; fileRef = EE4D13AB2446E59A0095F3D9 /* MKiCloudSync.m */; };
 		EE581B732436B99200BE5A84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE581B722436B99200BE5A84 /* AppDelegate.swift */; };
 		EE581B752436B99200BE5A84 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE581B742436B99200BE5A84 /* SceneDelegate.swift */; };
 		EE581B772436B99200BE5A84 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE581B762436B99200BE5A84 /* ViewController.swift */; };
@@ -62,6 +63,10 @@
 		EE286CBF2439D87400F15799 /* ActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheet.swift; sourceTree = "<group>"; };
 		EE286CC12439D9A900F15799 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		EE286CC42439DA3C00F15799 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		EE4D13A92446E5900095F3D9 /* MKiCloudSync.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MKiCloudSync.h; path = "../../../MKiCloudSync-master/MKiCloudSync.h"; sourceTree = "<group>"; };
+		EE4D13AA2446E5990095F3D9 /* FrankerFaceZ-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FrankerFaceZ-Bridging-Header.h"; sourceTree = "<group>"; };
+		EE4D13AB2446E59A0095F3D9 /* MKiCloudSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MKiCloudSync.m; path = "../../../MKiCloudSync-master/MKiCloudSync.m"; sourceTree = "<group>"; };
+		EE4D13AD2446E6D60095F3D9 /* FrankerFaceZ.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FrankerFaceZ.entitlements; sourceTree = "<group>"; };
 		EE581B6F2436B99200BE5A84 /* FrankerFaceZ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FrankerFaceZ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE581B722436B99200BE5A84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE581B742436B99200BE5A84 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -175,6 +180,16 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		EE4D13A82446E5720095F3D9 /* iCloud Sync */ = {
+			isa = PBXGroup;
+			children = (
+				EE4D13A92446E5900095F3D9 /* MKiCloudSync.h */,
+				EE4D13AB2446E59A0095F3D9 /* MKiCloudSync.m */,
+				EE4D13AA2446E5990095F3D9 /* FrankerFaceZ-Bridging-Header.h */,
+			);
+			path = "iCloud Sync";
+			sourceTree = "<group>";
+		};
 		EE581B662436B99100BE5A84 = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +209,8 @@
 		EE581B712436B99200BE5A84 /* FrankerFaceZ */ = {
 			isa = PBXGroup;
 			children = (
+				EE4D13AD2446E6D60095F3D9 /* FrankerFaceZ.entitlements */,
+				EE4D13A82446E5720095F3D9 /* iCloud Sync */,
 				EE286CC32439DA2200F15799 /* Utilities */,
 				EE286CB0243857C900F15799 /* Managers */,
 				EE286CAE2438577500F15799 /* Extensions */,
@@ -241,6 +258,7 @@
 				TargetAttributes = {
 					EE581B6E2436B99200BE5A84 = {
 						CreatedOnToolsVersion = 11.4;
+						LastSwiftMigration = 1140;
 					};
 				};
 			};
@@ -297,6 +315,7 @@
 				EE286CB62438626800F15799 /* SettingsVC.swift in Sources */,
 				EE951744243FB89C00B73813 /* UIViewController+Ext.swift in Sources */,
 				EE581B732436B99200BE5A84 /* AppDelegate.swift in Sources */,
+				EE4D13AC2446E59A0095F3D9 /* MKiCloudSync.m in Sources */,
 				EE581B8F2436E03000BE5A84 /* FavoriteCell.swift in Sources */,
 				EE951742243CB9DE00B73813 /* GFAvatarImageView.swift in Sources */,
 				EE95173C243CB93300B73813 /* GFTitleLabel.swift in Sources */,
@@ -442,8 +461,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = FrankerFaceZ/FrankerFaceZ.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 63R7WU94A2;
 				INFOPLIST_FILE = FrankerFaceZ/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -453,6 +474,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.johngers.FrankerFaceZ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FrankerFaceZ/iCloud Sync/FrankerFaceZ-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -462,8 +485,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = FrankerFaceZ/FrankerFaceZ.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 63R7WU94A2;
 				INFOPLIST_FILE = FrankerFaceZ/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -473,6 +498,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.johngers.FrankerFaceZ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FrankerFaceZ/iCloud Sync/FrankerFaceZ-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
